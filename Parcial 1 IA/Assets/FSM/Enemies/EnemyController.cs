@@ -66,8 +66,8 @@ public class EnemyController : MonoBehaviour
         INode chase = new ActionNode(() => _fsm.Transition(states.Chase));
         INode patrol = new ActionNode(() => _fsm.Transition(states.Patrol));
         //Questions
-        INode qIsEnemyClose = new QuestionNode(ShootRange, attack, chase);
-        INode qLineOfSight = new QuestionNode(LineOfSight, chase, patrol);
+        INode qIsEnemyClose = new QuestionNode(AttackRange, attack, chase);
+        INode qLineOfSight = new QuestionNode(LineOfSight, qIsEnemyClose, patrol);
 
         _root = qLineOfSight;
     }
@@ -75,11 +75,11 @@ public class EnemyController : MonoBehaviour
     {
         return _enemy.canSeePlayer;
     }
-    public bool ShootRange()
+    public bool AttackRange()
     {
-        bool isShootRange = (Vector3.Distance(transform.position, target.position) <= shootRange) ? true : false;
-        Debug.Log("Is Shoot Range" + isShootRange);
-        return isShootRange;
+        bool isAttackRange = (Vector3.Distance(transform.position, target.position) <= shootRange) ? true : false;
+        Debug.Log("Is Shoot Range" + isAttackRange);
+        return isAttackRange;
     }
     void Update()
     {

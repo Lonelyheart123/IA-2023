@@ -49,7 +49,6 @@ public class EnemyModel : MonoBehaviour, IVel
     {
         dir.y = 0;
         _rb.velocity = dir * speed;
-        transform.forward = Vector3.Lerp(transform.forward, dir, 0.2f);
     }
     //LOOK-DIR
     public void LookDir(Vector3 dir)

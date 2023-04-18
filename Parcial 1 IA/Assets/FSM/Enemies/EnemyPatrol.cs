@@ -70,7 +70,6 @@ namespace EnemyStates
                     _currentIndex += _sense * 1;
                 }
             }
-            _enemy.Move(dir.normalized);
             return dir.normalized;
         }
         public override void Execute()
@@ -85,7 +84,7 @@ namespace EnemyStates
             }
             else
             {
-                WaypointDir();
+                _enemy.Move(WaypointDir().normalized);
                 Debug.Log("HOLA");
                 _enemy.CantSeePlayer();
             }

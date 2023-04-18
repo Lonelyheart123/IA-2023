@@ -46,6 +46,7 @@ namespace EnemyStates
         }
         void InitializedSteering()
         {
+            var flee = new Flee(_transform, _target.transform);
             var pursuit = new Pursuit(_transform, _target.transform, _target, predictionTime);
             _avoidance = pursuit;
         }
@@ -60,16 +61,29 @@ namespace EnemyStates
         }
         void MoveToPlayer()
         {
+
+            if (_enemy.IsInSight(_target.transform))
+            {
+                _enemy.CanSeePlayer();
+
+            }
+            else
+            {
+                _enemy.CantSeePlayer();
+            }
+
             bool isLineOfSight = _enemyController.LineOfSight();
-            bool isInShootRange = _enemyController.ShootRange();
-            if (isLineOfSight && !isInShootRange)
+            bool isInAttackRange = _enemyController.AttackRange();
+            if (isLineOfSight && !isInAttackRange)
             {
                 Vector3 dir = GetDir();
                 _enemy.transform.LookAt(_target.transform.position);
                 var ySpeed = _enemy.GetComponent<Rigidbody>().velocity.y;
-                _enemy.GetComponent<Rigidbody>().velocity = new Vector3(dir.x * _enemy.speed, ySpeed, dir.z * _enemy.speed);
+                _enemy.Move(new Vector3(dir.x * _enemy.speed, ySpeed, dir.z * _enemy.speed).normalized);
+                _enemy.LookDir(new Vector3(dir.x * _enemy.speed, ySpeed, dir.z * _enemy.speed).normalized);
+
             }
-            else if (isLineOfSight && isInShootRange)
+            else if (isLineOfSight && isInAttackRange)
             {
                 _root.Execute();
             }
