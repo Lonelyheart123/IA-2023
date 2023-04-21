@@ -20,21 +20,9 @@ public class State<T> : IState<T>
         }
     }
 
-    public virtual void Awake()
-    {
-
-    }
-
-    public virtual void Execute()
-    {
-
-    }
-
-
-    public virtual void Sleep()
-    {
-
-    }
+    public virtual void Awake(){ }
+    public virtual void Execute(){ }
+    public virtual void Sleep(){ }
 
     public void AddTransition(T input, IState<T> state)
     {

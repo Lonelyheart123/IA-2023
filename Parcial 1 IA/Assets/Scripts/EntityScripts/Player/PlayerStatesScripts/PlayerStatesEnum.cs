@@ -6,5 +6,9 @@ public enum PlayerStatesEnum
 {
     Default,
     Idle,
-    Running
+    Running,
+    Kick,
+    Ducking,
+    Victory,
+    Sad
 }

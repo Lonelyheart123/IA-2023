@@ -57,9 +57,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Steering Behavior\Pursuit.cs" />
-    <Compile Include="Assets\Scripts\Decision Tree\QuestionNode.cs" />
     <Compile Include="Assets\Scripts\Decision Tree\INode.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerStatesScripts\PlayerStateMove.cs" />
     <Compile Include="Assets\Scripts\Steering Behavior\ISteering.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\EntityBase.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\FSMScripts\FSM.cs" />
+    <Compile Include="Assets\Scripts\Steering Behavior\Evade.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerView.cs" />
+    <Compile Include="Assets\Scripts\Steering Behavior\Seek.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerStatesScripts\PlayerStateBase.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerModel.cs" />
+    <Compile Include="Assets\Scripts\Steering Behavior\IVel.cs" />
+    <Compile Include="Assets\Scripts\Decision Tree\QuestionNode.cs" />
     <Compile Include="Assets\Scripts\Steering Behavior\Flee.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyPatrol.cs" />
     <Compile Include="Assets\Scripts\Steering Behavior\ObstacleAvoidance.cs" />
@@ -67,24 +78,13 @@
     <Compile Include="Assets\Scripts\Roulette Wheel\Roulette.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\Enemies\IEntity.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyChase.cs" />
-    <Compile Include="Assets\Scripts\FSMScripts\FSM.cs" />
     <Compile Include="Assets\Scripts\Decision Tree\RandomNode.cs" />
-    <Compile Include="Assets\Scripts\Steering Behavior\Evade.cs" />
     <Compile Include="Assets\Scripts\FSMScripts\State.cs" />
     <Compile Include="Assets\Scripts\FSMScripts\IState.cs" />
-    <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\Steering Behavior\Seek.cs" />
-    <Compile Include="Assets\Scripts\Decision Tree\ActionNode.cs" />
-    <Compile Include="Assets\Scripts\Steering Behavior\IVel.cs" />
-    <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyController.cs" />
-    <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerView.cs" />
-    <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerModel.cs" />
-    <Compile Include="Assets\Scripts\EntityScripts\EntityBase.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerStatesScripts\PlayerStateIdle.cs" />
-    <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerStatesScripts\PlayerStateBase.cs" />
-    <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerStatesScripts\PlayerStateMove.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerStatesScripts\PlayerStatesEnum.cs" />
+    <Compile Include="Assets\Scripts\Decision Tree\ActionNode.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -699,8 +699,14 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.18f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>

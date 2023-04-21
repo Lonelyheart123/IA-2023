@@ -23,7 +23,9 @@ namespace EnemyStates
         public LayerMask _obsMask;
         public ISteering _currentSteering;
 
-        public EnemyPatrol(EnemyModel EnemyModel, Transform Target, float Distance, INode Root, float Radius, float Range, float Angle, List<Transform> Points, float WalkPointRange, int CurrentIndex, Transform Transform, int Sense, LayerMask ObsMask, ISteering CurrentSteering)
+        public EnemyPatrol(EnemyModel EnemyModel, Transform Target, float Distance, INode Root, float Radius, float Range, float Angle,
+            List<Transform> Points, float WalkPointRange, int CurrentIndex, Transform Transform, int Sense, LayerMask ObsMask,
+            ISteering CurrentSteering)
         {
             _target = Target;
             _enemy = EnemyModel;
@@ -85,10 +87,9 @@ namespace EnemyStates
             else
             {
                 _enemy.Move(WaypointDir().normalized);
-                Debug.Log("HOLA");
+                Debug.Log("Not on sight");
                 _enemy.CantSeePlayer();
             }
-
         }
 
         public override void Sleep()

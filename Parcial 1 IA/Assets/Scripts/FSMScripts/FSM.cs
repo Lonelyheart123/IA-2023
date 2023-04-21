@@ -6,10 +6,7 @@ public class FSM<T>
 {
     IState<T> _current;
 
-    //public FSM(IState<T> initState)
-    //{
-    //    SetInIt(initState);
-    //}
+    public FSM() { }
 
     public void SetInit(IState<T> initState)
     {
