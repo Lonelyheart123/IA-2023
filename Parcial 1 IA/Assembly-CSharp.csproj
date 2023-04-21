@@ -72,12 +72,11 @@
     <Compile Include="Assets\Scripts\Steering Behavior\IVel.cs" />
     <Compile Include="Assets\Scripts\Decision Tree\QuestionNode.cs" />
     <Compile Include="Assets\Scripts\Steering Behavior\Flee.cs" />
-    <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyPatrol.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyStates\EnemyPatrol.cs" />
     <Compile Include="Assets\Scripts\Steering Behavior\ObstacleAvoidance.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyModel.cs" />
     <Compile Include="Assets\Scripts\Roulette Wheel\Roulette.cs" />
-    <Compile Include="Assets\Scripts\EntityScripts\Enemies\IEntity.cs" />
-    <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyChase.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyStates\EnemyChase.cs" />
     <Compile Include="Assets\Scripts\Decision Tree\RandomNode.cs" />
     <Compile Include="Assets\Scripts\FSMScripts\State.cs" />
     <Compile Include="Assets\Scripts\FSMScripts\IState.cs" />
@@ -85,6 +84,8 @@
     <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerStatesScripts\PlayerStatesEnum.cs" />
     <Compile Include="Assets\Scripts\Decision Tree\ActionNode.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\Box.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

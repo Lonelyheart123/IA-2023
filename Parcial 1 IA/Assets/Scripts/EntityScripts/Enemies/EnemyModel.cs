@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyModel : MonoBehaviour, IVel
+public class EnemyModel : EntityBase //MonoBehaviour, IVel
 {
-    public Action OnCollision = delegate { };
-    public float GetVel => _rb.velocity.magnitude;
+    //public Action OnCollision = delegate { };
+    /*public float GetVel => _rb.velocity.magnitude;
     public Vector3 GetFoward => transform.forward;
 
     Transform _target;
@@ -15,11 +15,11 @@ public class EnemyModel : MonoBehaviour, IVel
     Rigidbody _rb;
     Seek seek;
     //public Bullet _enemyBullet;
-    public EnemyController enemyController;
+    public EnemyController enemyController;*/
 
     public float range = 30;
     public float angle = 90;
-    public int speed;
+    /*public int speed;
 
     public float radius;
     public List<Transform> _points;
@@ -28,17 +28,17 @@ public class EnemyModel : MonoBehaviour, IVel
     public int _currentIndex = 0;
     public float _avoidanceWeight = 1;
     public float _steeringWeight = 1;
-    public float _predictionTime = 2;
+    public float _predictionTime = 2;*/
 
     public LayerMask obstacleMask;
-    internal Vector3 position;
+    /*internal Vector3 position;
     public ISteering _currentSteering;
     public ISteering _avoidance;
 
-    int _lastFrameLOS;
-    bool _cacheLOS;
+    //int _lastFrameLOS;
+    //bool _cacheLOS;*/
     public bool canSeePlayer;
-    private void Awake()
+    /*private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _transform = GetComponent<Transform>();
@@ -55,7 +55,7 @@ public class EnemyModel : MonoBehaviour, IVel
     {
         dir.y = 0;
         transform.forward = Vector3.Lerp(transform.forward, dir, 0.2f);
-    }
+    }*/
 
     //IN-SIGHT
     public bool IsInSight(Transform target)
@@ -72,7 +72,6 @@ public class EnemyModel : MonoBehaviour, IVel
 
         return true;
     }
-
     public void CanSeePlayer()
     {
         canSeePlayer = true;
@@ -81,14 +80,16 @@ public class EnemyModel : MonoBehaviour, IVel
     {
         canSeePlayer = false;
     }
-    //ATTACK
-    //public void Attack(Vector3 dir)
-    //{
-    //    Bullet bullet = Instantiate<Bullet>(_enemyBullet);
-    //    bullet.transform.position = transform.position;
-    //    bullet.SetDir = dir;
-    //}
-    //ON-COLLISION-ENTER
+
+    /*//ATTACK
+    public void Attack(Vector3 dir)
+    {
+        Bullet bullet = Instantiate<Bullet>(_enemyBullet);
+        bullet.transform.position = transform.position;
+        bullet.SetDir = dir;
+    }*/
+
+    /*//ON-COLLISION-ENTER
     private void OnCollisionEnter(Collision collision)
     {
         var entity = collision.gameObject.GetComponent<IEntity>();
@@ -101,7 +102,8 @@ public class EnemyModel : MonoBehaviour, IVel
             Debug.Log("Enemy dead");
             Destroy(this.gameObject);
         }
-    }
+    }*/
+
     //GIZMOS
     private void OnDrawGizmos()
     {
