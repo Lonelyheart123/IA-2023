@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638177967802777650
-    m_Hash: 854450834
+      ticks: 638177982842837965
+    m_Hash: 1221671435
   m_LockFileStatus:
     m_FilePath: C:/Users/Wilfredo Rukoz/Documents/GitHub/IA-2023/Parcial 1 IA (desactualizado)/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638177967852031781
-    m_Hash: 1879650283
+      ticks: 638177982842837965
+    m_Hash: 4147867682
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
