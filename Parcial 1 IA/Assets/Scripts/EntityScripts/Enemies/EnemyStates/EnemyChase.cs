@@ -20,9 +20,9 @@ namespace EnemyStates
         public LayerMask _obsMask;
         public ISteering _currentSteering;
         public ISteering _avoidance;
-        INode _root;
+        ITreeNode _root;
 
-        public EnemyChase(EnemyModel enemyModel, EnemyController enemyController, PlayerMovement target, float distance, INode root, float Radius, float Range, float Angle, Transform Transform, LayerMask ObsMask, ISteering CurrentSteering, ISteering Avoidance, float AvoidanceWeight, float SteeringWeight)
+        public EnemyChase(EnemyModel enemyModel, EnemyController enemyController, PlayerMovement target, float distance, ITreeNode root, float Radius, float Range, float Angle, Transform Transform, LayerMask ObsMask, ISteering CurrentSteering, ISteering Avoidance, float AvoidanceWeight, float SteeringWeight)
         {
             _enemyController = enemyController;
             _enemy = enemyModel;

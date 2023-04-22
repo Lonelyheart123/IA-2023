@@ -5,75 +5,84 @@ using EnemyStates;
 
 public class EnemyController : MonoBehaviour
 {
-    public FSM<states> _fsm;
-    EnemyModel _enemy;
-    public Transform target;
-    //public PlayerMovement playerMove;
-
+    EnemyModel _enemyModel;
+    FSM<EnemyStateEnum> _fsm;
+    ITreeNode _root;
     ISteering _steering;
-    ISteering _avoidance;
+    ISteering _obsAvoidance;
 
-    public float timePrediction;
-    Vector3 dir;
+    public EntityBase target;
+    public float multiplier;
+    public float predictionTime;
+    public LayerMask mask;
+    public float angle;
+    public float radius;
+    public int maxObs;
+
 
     public float shootRange;
     private float dist;
-    private float radius;
-    private float angle;
     private float avoidanceWeight;
-    private INode _root;
 
     private void Awake()
     {
-        _enemy = GetComponent<EnemyModel>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-    }
-
-    public enum states
-    {
-        Idle,
-        Patrol,
-        Chase,
-        Attack
-    }
-    private void Start()
-    {
-        _fsm = new FSM<states>();
-        _enemy = GetComponent<EnemyModel>();
+        _enemyModel = GetComponent<EnemyModel>();
+        InitializedFSM();
         InitializedTree();
-        //InitializedFSM();
+        InitializedSteering();
     }
-    /*void InitializedFSM()
+    void InitializedSteering()
     {
-        IState<states> patrol = new EnemyPatrol<states>(_enemy, target, dist, _root, _enemy.radius, _enemy.range, _enemy.angle, _enemy._points, _enemy.walkPointRange, _enemy._currentIndex, _enemy.transform, _enemy._sense, _enemy.obstacleMask, _enemy._currentSteering);
-        IState<states> chase = new EnemyChase<states>(_enemy, this, playerMove, dist, _root, _enemy.radius, _enemy.range, _enemy.angle, _enemy.transform, _enemy.obstacleMask, _enemy._currentSteering, _enemy._avoidance, _enemy._avoidanceWeight, _enemy._steeringWeight);
+        var pursuit = new Pursuit(transform, target, predictionTime);
+    }
+    void InitializedFSM()
+    {
+        var list = new List<EnemyStateBase<EnemyStateEnum>>();
+        _fsm = new FSM<EnemyStateEnum>();
+
+        var idle = new EnemyIdle<EnemyStateEnum>();
+        var chase = new EnemyChase<EnemyStateEnum>();
+        var patrol = new EnemyPatrol<EnemyStateEnum>();
+        var attack = new EnemyAttack<EnemyStateEnum>();
+
+        list.Add(idle);
+        list.Add(chase);
+        list.Add(patrol);
+        list.Add(attack);
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            list[i].InitializedState(_enemyModel, _fsm);
+        }
+
+        //IState<states> patrol = new EnemyPatrol<states>(_enemyModel, target, dist, _root, _enemyModel.radius, _enemyModel.range, _enemyModel.angle, _enemyModel._points, _enemyModel.walkPointRange, _enemyModel._currentIndex, _enemyModel.transform, _enemyModel._sense, _enemyModel.obstacleMask, _enemyModel._currentSteering);
+        //IState<states> chase = new EnemyChase<states>(_enemyModel, this, playerMove, dist, _root, _enemyModel.radius, _enemyModel.range, _enemyModel.angle, _enemyModel.transform, _enemyModel.obstacleMask, _enemyModel._currentSteering, _enemyModel._avoidance, _enemyModel._avoidanceWeight, _enemyModel._steeringWeight);
         //IState<states> attack = new EnemyAttack<states>(_enemy, this, target, dist, dir, _root);
 
         patrol.AddTransition(states.Chase, chase);
         chase.AddTransition(states.Patrol, patrol);
 
-        //chase.AddTransition(states.Attack, attack);
-        //attack.AddTransition(states.Chase, chase);
+        chase.AddTransition(states.Attack, attack);
+        attack.AddTransition(states.Chase, chase);
 
         _fsm.SetInit(patrol);
-
-        //_fsm = new FSM<states>(patrol);
-    }*/
+    }
     void InitializedTree()
     {
         //Actions
-        INode attack = new ActionNode(() => _fsm.Transitions(states.Attack));
-        INode chase = new ActionNode(() => _fsm.Transitions(states.Chase));
-        INode patrol = new ActionNode(() => _fsm.Transitions(states.Patrol));
+        ITreeNode attack = new ActionNode(() => _fsm.Transitions(EnemyStateEnum.Attack));
+        ITreeNode chase = new ActionNode(() => _fsm.Transitions(EnemyStateEnum.Chase));
+        ITreeNode patrol = new ActionNode(() => _fsm.Transitions(EnemyStateEnum.Patrol));
+
         //Questions
-        INode qIsEnemyClose = new QuestionNode(AttackRange, attack, chase);
-        INode qLineOfSight = new QuestionNode(LineOfSight, qIsEnemyClose, patrol);
+        ITreeNode qIsEnemyClose = new QuestionNode(AttackRange, attack, chase);
+        ITreeNode qLineOfSight = new QuestionNode(LineOfSight, qIsEnemyClose, patrol);
 
         _root = qLineOfSight;
     }
     public bool LineOfSight()
     {
-        return _enemy.canSeePlayer;
+        return _enemyModel.canSeePlayer;
     }
     public bool AttackRange()
     {
@@ -84,6 +93,11 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         _fsm.OnUpdate();
+        _root.Execute();
+        Vector3 dirAvoidance = _obsAvoidance.GetDir();
+        Vector3 dir = (_steering.GetDir() + dirAvoidance * multiplier).normalized;
+        _enemyModel.Move(dir);
+        _enemyModel.LookDir(dir);
     }
 
     /*

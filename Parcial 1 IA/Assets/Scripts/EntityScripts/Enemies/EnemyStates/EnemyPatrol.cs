@@ -11,7 +11,7 @@ namespace EnemyStates
         Transform _target;
         EnemyModel _enemy;
         float _distance = 0;
-        private INode _root;
+        private ITreeNode _root;
         public float _radius;
         public float _range = 30;
         public float _angle;
@@ -23,7 +23,7 @@ namespace EnemyStates
         public LayerMask _obsMask;
         public ISteering _currentSteering;
 
-        public EnemyPatrol(EnemyModel EnemyModel, Transform Target, float Distance, INode Root, float Radius, float Range, float Angle,
+        public EnemyPatrol(EnemyModel EnemyModel, Transform Target, float Distance, ITreeNode Root, float Radius, float Range, float Angle,
             List<Transform> Points, float WalkPointRange, int CurrentIndex, Transform Transform, int Sense, LayerMask ObsMask,
             ISteering CurrentSteering)
         {

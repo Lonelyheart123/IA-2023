@@ -5,37 +5,22 @@ using UnityEngine;
 public class State<T> : IState<T>
 {
     Dictionary<T, IState<T>> _transitions = new Dictionary<T, IState<T>>();
-    FSM<T> _fsm;
-
-    public FSM<T> StateMachine
-    {
-        get
-        {
-            return _fsm;
-        }
-
-        set
-        {
-            _fsm = value;
-        }
-    }
-
     public virtual void Awake(){ }
     public virtual void Execute(){ }
     public virtual void Sleep(){ }
-
+    public IState<T> GetTransition(T input)
+    {
+        if (_transitions.ContainsKey(input))
+        {
+            return _transitions[input];
+        }
+        return null;
+    }
     public void AddTransition(T input, IState<T> state)
     {
         if (!_transitions.ContainsKey(input))
             _transitions[input] = state;
     }
-
-    public void RemoveTransition(T input)
-    {
-        if (_transitions.ContainsKey(input))
-            _transitions.Remove(input);
-    }
-
     public void RemoveTransition(IState<T> state)
     {
         foreach (var item in _transitions)
@@ -49,13 +34,9 @@ public class State<T> : IState<T>
             }
         }
     }
-
-    public IState<T> GetTransition(T input)
+    public void RemoveTransition(T input)
     {
         if (_transitions.ContainsKey(input))
-        {
-            return _transitions[input];
-        }
-        return null;
-    }
+            _transitions.Remove(input);
+    }   
 }

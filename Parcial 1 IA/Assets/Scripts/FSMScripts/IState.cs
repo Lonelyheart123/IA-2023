@@ -17,6 +17,4 @@ public interface IState<T>
     void RemoveTransition(IState<T> state);
 
     IState<T> GetTransition(T input);
-
-    FSM<T> StateMachine { get; set; }
 }

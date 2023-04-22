@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Project
   m_RootView: {fileID: 3}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 19
+  controlID: 88
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 1886
+  controlID: 89
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 1887
+  controlID: 80
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -428,9 +428,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 4e6dffff
-      m_LastClickedID: -37554
-      m_ExpandedIDs: 4e6dffff1afbffff744b0000
+      m_SelectedIDs: 904f0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 1afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -919,22 +919,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/EntityScripts/Player
+    - Assets/Scripts/EntityScripts/Enemies/EnemyStates
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/EntityScripts/Player
+  - Assets/Scripts/EntityScripts/Enemies/EnemyStates
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Wilfredo Rukoz\Documents\GitHub\IA-2023\Parcial 1 IA
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 31}
-    m_SelectedIDs: f44d0000
-    m_LastClickedID: 19956
-    m_ExpandedIDs: 00000000ca4d0000cc4d0000ce4d0000d04d0000d26d0000
+    scrollPos: {x: 0, y: 75.80002}
+    m_SelectedIDs: 724f0000
+    m_LastClickedID: 20338
+    m_ExpandedIDs: 00000000404f0000424f0000444f0000464f0000484f0000644f0000664f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -962,7 +962,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ca4d0000cc4d0000ce4d0000d04d0000
+    m_ExpandedIDs: 00000000404f0000424f0000444f0000464f0000484f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: 209
+    m_CachedPref: -209
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1

@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyModel : EntityBase //MonoBehaviour, IVel
+public class EnemyModel : EntityBase
 {
+    float _timer;
+    public float maxTime;
     //public Action OnCollision = delegate { };
     /*public float GetVel => _rb.velocity.magnitude;
     public Vector3 GetFoward => transform.forward;
@@ -103,6 +104,26 @@ public class EnemyModel : EntityBase //MonoBehaviour, IVel
             Destroy(this.gameObject);
         }
     }*/
+
+    public float CurrentTimer
+    {
+        set
+        {
+            _timer = value;
+        }
+        get
+        {
+            return _timer;
+        }
+    }
+    public void RunTimer()
+    {
+        _timer -= Time.deltaTime;
+    }
+    public float GetRandomTime()
+    {
+        return Random.Range(0, maxTime);
+    }
 
     //GIZMOS
     private void OnDrawGizmos()
