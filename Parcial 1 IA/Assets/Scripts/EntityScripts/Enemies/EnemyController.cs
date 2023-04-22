@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using EnemyStates;
 
 public class EnemyController : MonoBehaviour
 {
@@ -11,6 +10,7 @@ public class EnemyController : MonoBehaviour
     ISteering _steering;
     ISteering _obsAvoidance;
 
+    public PlayerMovement playerMove;
     public EntityBase target;
     public float multiplier;
     public float predictionTime;
@@ -35,14 +35,20 @@ public class EnemyController : MonoBehaviour
     {
         var pursuit = new Pursuit(transform, target, predictionTime);
     }
-    void InitializedFSM()
+    public void InitializedFSM()
     {
         var list = new List<EnemyStateBase<EnemyStateEnum>>();
         _fsm = new FSM<EnemyStateEnum>();
 
         var idle = new EnemyIdle<EnemyStateEnum>();
-        var chase = new EnemyChase<EnemyStateEnum>();
-        var patrol = new EnemyPatrol<EnemyStateEnum>();
+        var chase = new EnemyChase<EnemyStateEnum>(_enemyModel, this,  , dist, _root, _enemyModel.radius, _enemyModel.range,
+            _enemyModel.angle, _enemyModel.transform, _enemyModel.obstacleMask, _enemyModel._currentSteering, _enemyModel._avoidance,
+            _enemyModel._avoidanceWeight, _enemyModel._steeringWeight);
+
+
+        var patrol = new EnemyPatrol<EnemyStateEnum>(_enemyModel, target.transform, dist, _root, _enemyModel.radius, _enemyModel.range,
+            _enemyModel.angle, _enemyModel._points, _enemyModel.walkPointRange, _enemyModel._currentIndex, _enemyModel.transform,
+            _enemyModel._sense, _enemyModel.obstacleMask, _enemyModel._currentSteering);
         var attack = new EnemyAttack<EnemyStateEnum>();
 
         list.Add(idle);
@@ -55,17 +61,17 @@ public class EnemyController : MonoBehaviour
             list[i].InitializedState(_enemyModel, _fsm);
         }
 
-        //IState<states> patrol = new EnemyPatrol<states>(_enemyModel, target, dist, _root, _enemyModel.radius, _enemyModel.range, _enemyModel.angle, _enemyModel._points, _enemyModel.walkPointRange, _enemyModel._currentIndex, _enemyModel.transform, _enemyModel._sense, _enemyModel.obstacleMask, _enemyModel._currentSteering);
-        //IState<states> chase = new EnemyChase<states>(_enemyModel, this, playerMove, dist, _root, _enemyModel.radius, _enemyModel.range, _enemyModel.angle, _enemyModel.transform, _enemyModel.obstacleMask, _enemyModel._currentSteering, _enemyModel._avoidance, _enemyModel._avoidanceWeight, _enemyModel._steeringWeight);
-        //IState<states> attack = new EnemyAttack<states>(_enemy, this, target, dist, dir, _root);
+        IState<states> patrol = new EnemyPatrol<states>(_enemyModel, target, dist, _root, _enemyModel.radius, _enemyModel.range, _enemyModel.angle, _enemyModel._points, _enemyModel.walkPointRange, _enemyModel._currentIndex, _enemyModel.transform, _enemyModel._sense, _enemyModel.obstacleMask, _enemyModel._currentSteering);
+        IState<states> chase = new EnemyChase<states>(_enemyModel, this, playerMove, dist, _root, _enemyModel.radius, _enemyModel.range, _enemyModel.angle, _enemyModel.transform, _enemyModel.obstacleMask, _enemyModel._currentSteering, _enemyModel._avoidance, _enemyModel._avoidanceWeight, _enemyModel._steeringWeight);
+        IState<states> attack = new EnemyAttack<states>(_enemy, this, target, dist, dir, _root);
 
-        patrol.AddTransition(states.Chase, chase);
-        chase.AddTransition(states.Patrol, patrol);
+        patrol.AddTransition(EnemyStateEnum.Chase, chase);
+        chase.AddTransition(EnemyStateEnum.Patrol, patrol);
 
-        chase.AddTransition(states.Attack, attack);
-        attack.AddTransition(states.Chase, chase);
+        chase.AddTransition(EnemyStateEnum.Attack, attack);
+        attack.AddTransition(EnemyStateEnum.Chase, chase);
 
-        _fsm.SetInit(patrol);
+        _fsm.SetInit(idle);
     }
     void InitializedTree()
     {
@@ -86,7 +92,7 @@ public class EnemyController : MonoBehaviour
     }
     public bool AttackRange()
     {
-        bool isAttackRange = (Vector3.Distance(transform.position, target.position) <= shootRange) ? true : false;
+        bool isAttackRange = (Vector3.Distance(transform.position, target.transform.position) <= shootRange) ? true : false;
         Debug.Log("Is Shoot Range" + isAttackRange);
         return isAttackRange;
     }

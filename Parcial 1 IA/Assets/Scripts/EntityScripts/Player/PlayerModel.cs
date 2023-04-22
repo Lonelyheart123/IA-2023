@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class PlayerModel : EntityBase
 {
+    public void Dead()
+    {
+        Debug.Log("Player dead");
 
+    }
 }

@@ -349,6 +349,7 @@
 "Assets/Scripts/EntityScripts/Player/PlayerModel.cs"
 "Assets/Scripts/EntityScripts/Player/PlayerMovement.cs"
 "Assets/Scripts/EntityScripts/Player/PlayerStatesScripts/PlayerStateBase.cs"
+"Assets/Scripts/EntityScripts/Player/PlayerStatesScripts/PlayerStateDucking.cs"
 "Assets/Scripts/EntityScripts/Player/PlayerStatesScripts/PlayerStateIdle.cs"
 "Assets/Scripts/EntityScripts/Player/PlayerStatesScripts/PlayerStateMove.cs"
 "Assets/Scripts/EntityScripts/Player/PlayerStatesScripts/PlayerStatesEnum.cs"

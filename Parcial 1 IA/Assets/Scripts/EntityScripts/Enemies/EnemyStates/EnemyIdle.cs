@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyIdle<T> : EnemyStateBase<T>
 {
-    public override void Awake()
+    /*public override void Awake()
     {
         base.Awake();
         var timer = _model.GetRandomTime();
@@ -26,5 +26,5 @@ public class EnemyIdle<T> : EnemyStateBase<T>
     {
         base.Sleep();
         _model.CurrentTimer = 0;
-    }
+    }*/
 }

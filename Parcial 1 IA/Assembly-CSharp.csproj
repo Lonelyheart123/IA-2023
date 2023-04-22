@@ -83,12 +83,13 @@
     <Compile Include="Assets\Scripts\FSMScripts\IState.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerStatesScripts\PlayerStateIdle.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerStatesScripts\PlayerStatesEnum.cs" />
-    <Compile Include="Assets\Scripts\DecisionTree\ActionNode.cs" />
-    <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyController.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyStates\EnemyStateEnum.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyStates\EnemyStateBase.cs" />
+    <Compile Include="Assets\Scripts\DecisionTree\ActionNode.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyStates\EnemyIdle.cs" />
     <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyStates\EnemyAttack.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\Enemies\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\EntityScripts\Player\PlayerStatesScripts\PlayerStateDucking.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

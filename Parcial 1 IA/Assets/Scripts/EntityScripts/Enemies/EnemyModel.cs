@@ -7,20 +7,15 @@ public class EnemyModel : EntityBase
     float _timer;
     public float maxTime;
     //public Action OnCollision = delegate { };
-    /*public float GetVel => _rb.velocity.magnitude;
-    public Vector3 GetFoward => transform.forward;
 
     Transform _target;
     Transform _entity;
     Transform _transform;
     Rigidbody _rb;
     Seek seek;
-    //public Bullet _enemyBullet;
-    public EnemyController enemyController;*/
 
     public float range = 30;
     public float angle = 90;
-    /*public int speed;
 
     public float radius;
     public List<Transform> _points;
@@ -29,34 +24,21 @@ public class EnemyModel : EntityBase
     public int _currentIndex = 0;
     public float _avoidanceWeight = 1;
     public float _steeringWeight = 1;
-    public float _predictionTime = 2;*/
+    public float _predictionTime = 2;
 
     public LayerMask obstacleMask;
-    /*internal Vector3 position;
+    internal Vector3 position;
     public ISteering _currentSteering;
     public ISteering _avoidance;
 
-    //int _lastFrameLOS;
-    //bool _cacheLOS;*/
+    int _lastFrameLOS;
+    bool _cacheLOS;
     public bool canSeePlayer;
-    /*private void Awake()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _transform = GetComponent<Transform>();
     }
-
-    //MOVE
-    public void Move(Vector3 dir)
-    {
-        dir.y = 0;
-        _rb.velocity = dir * speed;
-    }
-    //LOOK-DIR
-    public void LookDir(Vector3 dir)
-    {
-        dir.y = 0;
-        transform.forward = Vector3.Lerp(transform.forward, dir, 0.2f);
-    }*/
 
     //IN-SIGHT
     public bool IsInSight(Transform target)
@@ -82,28 +64,24 @@ public class EnemyModel : EntityBase
         canSeePlayer = false;
     }
 
-    /*//ATTACK
-    public void Attack(Vector3 dir)
+    //ATTACK
+    public void Attack(PlayerModel player)
     {
-        Bullet bullet = Instantiate<Bullet>(_enemyBullet);
-        bullet.transform.position = transform.position;
-        bullet.SetDir = dir;
-    }*/
+        if(player != null)
+        {
 
-    /*//ON-COLLISION-ENTER
+        }
+    }
+
+    //ON-COLLISION-ENTER
     private void OnCollisionEnter(Collision collision)
     {
-        var entity = collision.gameObject.GetComponent<IEntity>();
-        if (entity != null)
+        var catchPlayer = collision.gameObject.GetComponent<PlayerModel>();
+        if (catchPlayer != null)
         {
-            OnCollision();
+            Debug.Log("Player dead");
         }
-        if (collision.gameObject.tag == "Bullet")
-        {
-            Debug.Log("Enemy dead");
-            Destroy(this.gameObject);
-        }
-    }*/
+    }
 
     public float CurrentTimer
     {
