@@ -41,7 +41,7 @@ namespace EnemyStates
             _currentSteering = CurrentSteering;
         }
 
-        public void Awake()
+        public override void Awake()
         {
             InitializedSteering();
         }

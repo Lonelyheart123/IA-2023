@@ -2,83 +2,80 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxKey : MonoBehaviour
+public class Chances : MonoBehaviour
 {
-    //Variables de Roulette Wheel
-    Roulette _roulette;
-    Dictionary<ActionNode, int> _rouletteNodes = new Dictionary<ActionNode, int>();
+    public float min = 50;
+    public float max = 100;
+    public GameObject cajita;
+    public Transform poscajita;
+    public Transform posllave;
+    public GameObject llave;
+    public bool onRange;
+    public bool isBoxOpen;
+    public float count;
+    Dictionary<string, float> _dic = new Dictionary<string, float>();
 
-    Transform target;
-    public float range = 30;
-    public float angle = 90;
-    public LayerMask maskObstacle;
-    public LayerMask maskTargets;
-    public float time;
-    float _counter = 0;
-
-    private void Awake()
-    {
-        if (GameObject.FindGameObjectWithTag("Player") != null)
-        {
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-        }
-    }
-
+    public List<Chances> cajas = new List<Chances>();
     private void Start()
     {
-        CreateRoulette();
-    }
+        _dic["Absolutamente nada"] = 90;
+        //_dic["Nada"] = 80;
+        _dic["Llave"] = 10;
 
+    }
     void Update()
     {
-        _counter += Time.deltaTime;
-        if (_counter >= time)
+        if (Input.GetKeyDown(KeyCode.R) && onRange == true && isBoxOpen == false)
         {
-            RouletteAction();
-            _counter = 0;
+            isBoxOpen = true;
+
+            if (isBoxOpen)
+            {
+                cajita.SetActive(false);
+                //count = _dic["Absolutamente nada"];
+                for (int i = 0; i < 1; i++)
+                {
+                    var item = CajitaRandom.Roulette(_dic);
+                    print(item);
+
+                    if (item == "Llave")
+                    {
+                        llave.SetActive(true);
+                        posllave.transform.position = poscajita.transform.position;
+                        print("Un lindo circulo");
+
+                    }
+                    else
+                    {
+
+                        _dic["Absolutamente nada"] = _dic["Absolutamente nada"] - 5;
+                        count = _dic["Absolutamente nada"];
+                        print(_dic["Absolutamente nada"]);
+                    }
+                    /*if (item == "Absolutamente nada" || item == "Nada")
+                    {
+                        _dic["Absolutamente nada"]-=5;
+                        Debug.Log(_dic["Absolutamente nada"]);
+                    }*/
+                }
+
+            }
         }
     }
-
-    void Key()
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("You got the key!");
-    }
-
-    void NotKey()
-    {
-        Debug.Log("No key :(");
-    }
-
-    public Transform[] CheckTargets()
-    {
-        Collider[] colls = Physics.OverlapSphere(transform.position, range, maskTargets);
-        Transform[] targets = new Transform[colls.Length];
-
-        for (int i = 0; i < colls.Length; i++)
+        if (other.CompareTag("Player"))
         {
-            targets[i] = colls[i].transform;
+            onRange = true;
         }
-        return targets;
-    }
-
-    public void CreateRoulette()
-    {
-        Debug.Log("Box Roulette Created");
-        _roulette = new Roulette();
-
-        ActionNode reward = new ActionNode(Key);
-        ActionNode empty = new ActionNode(NotKey);
-
-        _rouletteNodes.Add(reward, 98);
-        _rouletteNodes.Add(empty, 2);
-
-        ActionNode rouletteAction = new ActionNode(RouletteAction);
 
     }
-
-    public void RouletteAction()
+    private void OnTriggerExit(Collider other)
     {
-        ActionNode nodeRoulette = _roulette.Run(_rouletteNodes);
-        nodeRoulette.Execute();
+        if (other.CompareTag("Player"))
+        {
+            onRange = false;
+        }
+
     }
 }

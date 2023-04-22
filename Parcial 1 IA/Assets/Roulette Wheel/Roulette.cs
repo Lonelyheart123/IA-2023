@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Roulette
 {
-    public T Run<T>(Dictionary<T, int> items){
+	public static float Range (float min, float max)
+    {
+		return (Random.value * (max - min)) + min;
+    }
+	public static T Run<T>(Dictionary<T, int> items){
 		int total = 0;
 		
 		foreach(var item in items){

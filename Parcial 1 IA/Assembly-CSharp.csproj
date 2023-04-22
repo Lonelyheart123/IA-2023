@@ -68,11 +68,11 @@
     <Compile Include="Assets\FSM\Enemies\IEntity.cs" />
     <Compile Include="Assets\FSM\Enemies\EnemyChase.cs" />
     <Compile Include="Assets\FSM\Enemies\FSM.cs" />
-    <Compile Include="Assets\Decision Tree\RandomNode.cs" />
     <Compile Include="Assets\Steering Behavior\Evade.cs" />
     <Compile Include="Assets\FSM\Enemies\State.cs" />
     <Compile Include="Assets\FSM\Enemies\IState.cs" />
     <Compile Include="Assets\FSM\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Roulette Wheel\BoxKey.cs" />
     <Compile Include="Assets\FSM\Player\PlayerIdle.cs" />
     <Compile Include="Assets\Nodos\Nodo.cs" />
     <Compile Include="Assets\Steering Behavior\Seek.cs" />
@@ -80,7 +80,7 @@
     <Compile Include="Assets\Steering Behavior\IVel.cs" />
     <Compile Include="Assets\FSM\Enemies\EnemyController.cs" />
     <Compile Include="Assets\Nodos\NodoArista.cs" />
-    <Compile Include="Assets\Roulette Wheel\BoxKey.cs" />
+    <Compile Include="Assets\Roulette Wheel\CajitaRandom.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
