@@ -76,11 +76,11 @@
     <Compile Include="Assets\FSM\Player\PlayerIdle.cs" />
     <Compile Include="Assets\Nodos\Nodo.cs" />
     <Compile Include="Assets\Steering Behavior\Seek.cs" />
+    <Compile Include="Assets\Roulette Wheel\CajitaRandom.cs" />
     <Compile Include="Assets\Decision Tree\ActionNode.cs" />
     <Compile Include="Assets\Steering Behavior\IVel.cs" />
     <Compile Include="Assets\FSM\Enemies\EnemyController.cs" />
     <Compile Include="Assets\Nodos\NodoArista.cs" />
-    <Compile Include="Assets\Roulette Wheel\CajitaRandom.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
